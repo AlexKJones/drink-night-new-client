@@ -1,18 +1,19 @@
 @import '~bootstrap/scss/bootstrap';
 
-@import url('https://fonts.googleapis.com/css2?family=Space+Mono&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+// color palette #CE6A6C  #EBADA1  #BED3C3 #4B919E #222F53
 
-$background-color-dark: #292A32;
-$background-color-light: #FBFAF8;
-$complimentary-color-dark: #393B43;
-$complimentary-color-light: #FEFFFF;
+@import url('https://fonts.googleapis.com/css2?family=Balsamiq+Sans&display=swap');
+
+$background-color-dark: #222F53;
+$background-color-light: #4B919E;
+$complimentary-color-dark: #222F53;
+$complimentary-color-light: #4B919E;
 
 body {
   color: $background-color-dark;
   margin: auto;
-  font-family: 'Bebas Neue', cursive;
-  background-color: white;
+  font-family: 'Balsamiq Sans';
+  background-color: #BED3C3;
 }
 
 body.dark-mode {
@@ -25,8 +26,8 @@ p {
 }
 
 #colorMode {
-  font-family: 'Bebas Neue', cursive;
-  color: #E50914;
+  font-family: 'Balsamiq Sans';
+  color: #CE6A6C;
   border: none;
   padding: 20px;
   text-align: center;
@@ -41,21 +42,21 @@ p {
 }
 
 #colorMode:hover {
-  color: #E50914;
-  background: black;
+  color: #CE6A6C;
+  background: EBADA1;
   border: 2px solid white;
-  font-family: 'Bebas Neue', cursive;
+  font-family: 'Balsamiq Sans';
 }
 
-#reviewflixlogo {
-  color: red;
-  font-family: 'Bebas Neue', cursive;
+#drinknightlogo {
+  color: #CE6A6C;
+  font-family: 'Balsamiq Sans';
 }
 
 #navbarcontent {
   font-size: 20px;
   justify-content: space-between;
-  font-family: 'Bebas Neue', cursive;
+  font-family: 'Balsamiq Sans';
 }
 
 .nav-link {

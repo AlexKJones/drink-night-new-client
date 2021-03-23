@@ -1,32 +1,32 @@
 import React, { useState, useEffect } from 'react'
 import { withRouter, Link } from 'react-router-dom'
 import Button from 'react-bootstrap/Button'
-import { viewShow, deleteShow, deleteReview } from '../../../api/auth'
+import { viewEvent, deleteEvent, deleteReview } from '../../api/auth'
 import Card from 'react-bootstrap/Card'
 
-const ViewShow = (props) => {
-  const [show, setShow] = useState(null)
+const ViewEvent = (props) => {
+  const [event, setEvent] = useState(null)
   const [reviews, setReviews] = useState(null)
   const [owner, setOwner] = useState(null)
   const { user, msgAlert, match, history } = props
 
   useEffect(() => {
-    viewShow(user, match.params.showId)
+    viewEvent(user, match.params.eventId)
       .then(res => {
-        setShow(res.data.show)
+        setEvent(res.data.event)
         setReviews(res.data.reviews)
-        setOwner(res.data.show.owner)
+        setOwner(res.data.event.owner)
       })
       .then(() => {
         msgAlert({
-          heading: 'View Show Success',
-          message: 'See the Show there!',
+          heading: 'View Event Success',
+          message: 'See the Event there!',
           variant: 'success'
         })
       })
       .catch(err => {
         msgAlert({
-          heading: 'Show Show Failed :(',
+          heading: 'Event Event Failed :(',
           message: 'Error code: ' + err.message,
           variant: 'danger'
         })
@@ -34,15 +34,15 @@ const ViewShow = (props) => {
   }, [])
 
   const handleDelete = () => {
-    deleteShow(user, match.params.showId)
+    deleteEvent(user, match.params.eventId)
       .then(() => {
         msgAlert({
-          heading: 'Show Deleted',
-          message: 'Back to the list of shows that exist',
+          heading: 'Event Deleted',
+          message: 'Back to the list of events that exist',
           variant: 'success'
         })
       })
-      .then(() => history.push('/shows'))
+      .then(() => history.push('/events'))
       .catch(err => {
         msgAlert({
           heading: 'Deletion Failed',
@@ -73,18 +73,18 @@ const ViewShow = (props) => {
 
   return (
     <div>
-      {show && reviews ? (
+      {event && reviews ? (
         <div>
           <div>
             <Card>
-              <Card.Title>{show.title}</Card.Title>
-              <Card.Text>Starring: {show.starring}</Card.Text>
-              <Card.Text>Directed by: {show.director}</Card.Text>
-              <Card.Text>{show.description}</Card.Text>
-              <Card.Text>released: {show.released}</Card.Text>
-              {user._id === owner ? <Link to={'/show-update/' + show._id}>Update Show</Link> : '' }
-              <Link to={'/create-review/' + show._id}>Review Show</Link>
-              {user._id === owner ? <Button onClick={handleDelete}>Delete This Show</Button> : '' }
+              <Card.Title>{event.title}</Card.Title>
+              <Card.Text>Starring: {event.starring}</Card.Text>
+              <Card.Text>Directed by: {event.director}</Card.Text>
+              <Card.Text>{event.description}</Card.Text>
+              <Card.Text>released: {event.released}</Card.Text>
+              {user._id === owner ? <Link to={'/event-update/' + event._id}>Update Event</Link> : '' }
+              <Link to={'/create-review/' + event._id}>Review Event</Link>
+              {user._id === owner ? <Button onClick={handleDelete}>Delete This Event</Button> : '' }
             </Card>
             {reviews.map(review => (
               <div key={review._id}>
@@ -106,4 +106,4 @@ const ViewShow = (props) => {
   )
 }
 
-export default withRouter(ViewShow)
+export default withRouter(ViewEvent)

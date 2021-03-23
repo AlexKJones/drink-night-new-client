@@ -1,27 +1,27 @@
 import React, { useState, useEffect } from 'react'
 import { Link, withRouter } from 'react-router-dom'
 
-import { viewShow, deleteShow } from '../../../api/auth'
-const DeleteShow = (props) => {
+import { viewEvent, deleteEvent } from '../../api/auth'
+const DeleteEvent = (props) => {
   // const [loading, setLoading] = useState(true)
-  const [show, setShow] = useState(null)
+  const [event, setEvent] = useState(null)
   const { user, msgAlert, match, history } = props
 
   useEffect(() => {
-    viewShow(user, match.params.showId)
+    viewEvent(user, match.params.eventId)
       .then(res => {
-        setShow(res.data.show)
+        setEvent(res.data.event)
       })
       .then(() => {
         msgAlert({
-          heading: 'View Show Success',
-          message: 'See the Show there!',
+          heading: 'View Event Success',
+          message: 'See the Event there!',
           variant: 'success'
         })
       })
       .catch(err => {
         msgAlert({
-          heading: 'Show Show Failed :(',
+          heading: 'Event Event Failed :(',
           message: 'Error code: ' + err.message,
           variant: 'danger'
         })
@@ -29,15 +29,15 @@ const DeleteShow = (props) => {
   }, [])
 
   const handleDelete = () => {
-    deleteShow(user, match.params.showId)
+    deleteEvent(user, match.params.eventId)
       .then(() => {
         msgAlert({
-          heading: 'Show Deleted',
-          message: 'Back to the list of shows that exist',
+          heading: 'Event Deleted',
+          message: 'Back to the list of events that exist',
           variant: 'success'
         })
       })
-      .then(() => history.push('/shows'))
+      .then(() => history.push('/events'))
       .catch(err => {
         msgAlert({
           heading: 'Deletion Failed',
@@ -49,16 +49,16 @@ const DeleteShow = (props) => {
 
   return (
     <div>
-      {show ? (
+      {event ? (
         <div>
-          <h2>{show.title}</h2>
-          <p>Directed by: {show.director}</p>
+          <h2>{event.title}</h2>
+          <p>Directed by: {event.director}</p>
           <button onClick={handleDelete}>Delete</button>
-          <Link to={'/show-update/' + show._id}>Update Show</Link>
+          <Link to={'/event-update/' + event._id}>Update Event</Link>
         </div>
       ) : 'Loading...'}
     </div>
   )
 }
 
-export default withRouter(DeleteShow)
+export default withRouter(DeleteEvent)

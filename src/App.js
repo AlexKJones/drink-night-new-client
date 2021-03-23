@@ -9,18 +9,12 @@ import SignUp from './components/SignUp/SignUp'
 import SignIn from './components/SignIn/SignIn'
 import SignOut from './components/SignOut/SignOut'
 import ChangePassword from './components/ChangePassword/ChangePassword'
-// <-------- Review imports ------------->
-import CreateReview from './components/ReviewComponents/CreateReview/CreateReview'
-import UpdateReview from './components/ReviewComponents/UpdateReview/UpdateReview'
-import DeleteReview from './components/ReviewComponents/DeleteReview/DeleteReview'
-import ViewReview from './components/ReviewComponents/ViewReview/ViewReview'
-import ViewReviews from './components/ReviewComponents/ViewReviews/ViewReviews'
-// <-------- Show imports ------------->
-import CreateShow from './components/ShowComponents/CreateShows/CreateShows'
-import UpdateShow from './components/ShowComponents/UpdateShow/UpdateShow'
-import DeleteShow from './components/ShowComponents/DeleteShow/DeleteShow'
-import ViewShow from './components/ShowComponents/ViewShow/ViewShow'
-import ViewShows from './components/ShowComponents/ViewShows/ViewShows'
+// <-------- Event imports ------------->
+import CreateEvent from './components/EventComponents/CreateEvents'
+import UpdateEvent from './components/EventComponents/UpdateEvent'
+import DeleteEvent from './components/EventComponents/DeleteEvent'
+import ViewEvent from './components/EventComponents/ViewEvent'
+import ViewEvents from './components/EventComponents/ViewEvents'
 
 class App extends Component {
   constructor () {
@@ -77,76 +71,40 @@ class App extends Component {
           <AuthenticatedRoute user={user} path='/change-password' render={() => (
             <ChangePassword msgAlert={this.msgAlert} user={user} />
           )} />
-          <AuthenticatedRoute user={user} path='/deletereview/:reviewId' render={({ match }) => (
-            <DeleteReview
+          <Route user={user} exact path='/view-events' render={() => (
+            <ViewEvents
+              user={user}
+              msgAlert={this.msgAlert}
+            />
+          )}/>
+          <AuthenticatedRoute user={user} path='/create-events' render={() => (
+            <CreateEvent
+              user={user}
+              msgAlert={this.msgAlert}
+            />
+          )}/>
+          <AuthenticatedRoute user={user} path='/delete-event/:eventId' render={({ match }) => (
+            <DeleteEvent
               msgAlert={this.msgAlert}
               user={user}
               match={match}
             />
           )} />
-          <AuthenticatedRoute user={user} exact path='/reviews/:reviewId' render={({ match }) => (
-            <ViewReview
+          <AuthenticatedRoute user={user} path='/events/:eventId' render={({ match }) => (
+            <ViewEvent
               user={user}
               msgAlert={this.msgAlert}
               match={match}
             />
           )}/>
-          <Route user={user} exact path='/shows/:showId/reviews' render={({ match }) => (
-            <ViewReviews
-              user={user}
-              msgAlert={this.msgAlert}
-              match={match}
-            />
-          )}/>
-          <AuthenticatedRoute user={user} path='/review-update/:reviewId' render={({ match, history }) => (
-            <UpdateReview
+          <AuthenticatedRoute user={user} path='/event-update/:eventId' render={({ match, history }) => (
+            <UpdateEvent
               match={match}
               history={history}
               user={user}
               msgAlert={this.msgAlert}
             />
           )}/>
-          <Route user={user} exact path='/view-shows' render={() => (
-            <ViewShows
-              user={user}
-              msgAlert={this.msgAlert}
-            />
-          )}/>
-          <AuthenticatedRoute user={user} path='/create-shows' render={() => (
-            <CreateShow
-              user={user}
-              msgAlert={this.msgAlert}
-            />
-          )}/>
-          <AuthenticatedRoute user={user} path='/delete-show/:showId' render={({ match }) => (
-            <DeleteShow
-              msgAlert={this.msgAlert}
-              user={user}
-              match={match}
-            />
-          )} />
-          <AuthenticatedRoute user={user} path='/shows/:showId' render={({ match }) => (
-            <ViewShow
-              user={user}
-              msgAlert={this.msgAlert}
-              match={match}
-            />
-          )}/>
-          <AuthenticatedRoute user={user} path='/show-update/:showId' render={({ match, history }) => (
-            <UpdateShow
-              match={match}
-              history={history}
-              user={user}
-              msgAlert={this.msgAlert}
-            />
-          )}/>
-          <AuthenticatedRoute user={user} path='/create-review/:showId' render={({ match }) => (
-            <CreateReview
-              match={match}
-              user={user}
-              msgAlert={this.msgAlert}
-            />
-          )} />
         </main>
       </Fragment>
 

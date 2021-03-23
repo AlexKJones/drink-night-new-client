@@ -10,6 +10,7 @@ export const signUp = credentials => {
       credentials: {
         email: credentials.email,
         username: credentials.username,
+        weight: credentials.weight,
         password: credentials.password,
         password_confirmation: credentials.passwordConfirmation
       }
@@ -125,32 +126,29 @@ export const deleteReview = (user, id) => {
   })
 }
 
-// // <---- Show Crud Zone ----->
+// // <---- Event Crud Zone ----->
 // // <--------------------------->
 // // <--------------------------->
 
-export const createShow = (show, user) => {
+export const createEvent = (event, user) => {
   return axios({
-    url: apiUrl + '/create-shows',
+    url: apiUrl + '/create-events',
     method: 'POST',
     headers: {
       'Authorization': 'Bearer ' + user.token
     },
     data: {
-      show: {
-        title: show.title,
-        starring: show.starring,
-        director: show.director,
-        description: show.description,
-        released: show.released
+      event: {
+        title: event.title,
+        date: event.date
       }
     }
   })
 }
 
-export const viewShow = (user, id) => {
+export const viewEvent = (user, id) => {
   return axios({
-    url: apiUrl + '/shows/' + id,
+    url: apiUrl + '/events/' + id,
     headers: {
       Authorization: 'Bearer ' + user.token
     },
@@ -158,36 +156,33 @@ export const viewShow = (user, id) => {
   })
 }
 
-export const viewShows = (user, id) => {
+export const viewEvents = (user, id) => {
   return axios({
-    url: apiUrl + '/shows/',
+    url: apiUrl + '/events/',
     method: 'GET'
   }
   )
 }
 
-export const updateShow = (user, show, id) => {
+export const updateEvent = (user, event, id) => {
   return axios({
-    url: apiUrl + '/shows/' + id,
+    url: apiUrl + '/events/' + id,
     headers: {
       Authorization: 'Bearer ' + user.token
     },
     method: 'PATCH',
     data: {
-      show: {
-        title: show.title,
-        starring: show.starring,
-        director: show.director,
-        description: show.description,
-        released: show.released
+      event: {
+        title: event.title,
+        date: event.date
       }
     }
   })
 }
 
-export const deleteShow = (user, id) => {
+export const deleteEvent = (user, id) => {
   return axios({
-    url: apiUrl + '/shows/' + id,
+    url: apiUrl + '/events/' + id,
     headers: {
       Authorization: 'Bearer ' + user.token
     },

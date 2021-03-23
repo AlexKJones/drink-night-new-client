@@ -6,8 +6,8 @@ import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 
 const ReviewCreate = props => {
-  const showId = props.match.params.showId
-  const [review, setReview] = useState({ title: '', body: '', rating: '', show: showId })
+  const eventId = props.match.params.eventId
+  const [review, setReview] = useState({ title: '', body: '', rating: '', event: eventId })
   const [createdReviewId, setCreatedReviewId] = useState(null)
   const { msgAlert } = props
   const handleChange = event => {
@@ -57,7 +57,7 @@ const ReviewCreate = props => {
           <Form.Group controlId="title">
             <Form.Label>Title</Form.Label>
             <Form.Control
-              placeholder="Show was Great!"
+              placeholder="Event was Great!"
               value={review.title}
               name="title"
               onChange={handleChange}
