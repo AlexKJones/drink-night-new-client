@@ -5,39 +5,39 @@ import apiUrl from '../../apiConfig'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 
-const EventCreate = props => {
-  const [event, setEvent] = useState({ title: '', date: '' })
-  const [createdEventId, setCreatedEventId] = useState(null)
+const PartyCreate = props => {
+  const [party, setParty] = useState({ title: '', date: '' })
+  const [createdPartyId, setCreatedPartyId] = useState(null)
   const { msgAlert } = props
   const handleChange = event => {
     event.persist()
-    setEvent(prevEvent => {
+    setParty(prevParty => {
       const updatedField = { [event.target.name]: event.target.value }
-      const editedEvent = Object.assign({}, prevEvent, updatedField)
-      return editedEvent
+      const editedParty = Object.assign({}, prevParty, updatedField)
+      return editedParty
     })
   }
   const handleSubmit = (event) => {
     event.preventDefault()
     axios({
-      url: `${apiUrl}/events`,
+      url: `${apiUrl}/partys`,
       method: 'POST',
       headers: {
         'Authorization': 'Bearer ' + props.user.token
       },
-      data: { event }
+      data: { party }
     })
-      .then(res => setCreatedEventId(res.data.event._id))
+      .then(res => setCreatedPartyId(res.data.party._id))
       .then(() => {
         msgAlert({
-          heading: 'Create Event Success',
-          message: 'See the Event there!',
+          heading: 'Create Party Success',
+          message: 'See the Party there!',
           variant: 'success'
         })
       })
       .catch(err => {
         msgAlert({
-          heading: 'Create Event Failed :(',
+          heading: 'Create Party Failed :(',
           message: 'Error code: ' + err.message,
           variant: 'danger'
         })
@@ -45,19 +45,20 @@ const EventCreate = props => {
       .catch(console.error)
   }
 
-  if (createdEventId) {
-    return <Redirect to={`/events/${createdEventId}`} />
+  if (createdPartyId) {
+    return <Redirect to={`/partys/${createdPartyId}`} />
   }
   return (
     <div className="row">
       <div className="col-sm-10 col-md-8 mx-auto mt-5">
-        <h3>Create Event</h3>
+        <h3>Create Party</h3>
         <Form onSubmit={handleSubmit}>
           <Form.Group controlId="title">
             <Form.Label>Title</Form.Label>
             <Form.Control
               placeholder="Whiskey Wednesday"
-              value={event.title}
+              type="title"
+              value={party.title}
               name="title"
               onChange={handleChange}
             />
@@ -66,7 +67,7 @@ const EventCreate = props => {
             <Form.Label>Date</Form.Label>
             <Form.Control
               placeholder="January 1 2021"
-              value={event.date}
+              value={party.date}
               type="date"
               name="date"
               onChange={handleChange}
@@ -82,4 +83,4 @@ const EventCreate = props => {
   )
 }
 
-export default EventCreate
+export default PartyCreate

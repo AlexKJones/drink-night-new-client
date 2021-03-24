@@ -126,29 +126,29 @@ export const deleteReview = (user, id) => {
   })
 }
 
-// // <---- Event Crud Zone ----->
+// // <---- Party Crud Zone ----->
 // // <--------------------------->
 // // <--------------------------->
 
-export const createEvent = (event, user) => {
+export const createParty = (party, user) => {
   return axios({
-    url: apiUrl + '/create-events',
+    url: apiUrl + '/create-partys',
     method: 'POST',
     headers: {
       'Authorization': 'Bearer ' + user.token
     },
     data: {
-      event: {
-        title: event.title,
-        date: event.date
+      party: {
+        title: party.title,
+        date: party.date
       }
     }
   })
 }
 
-export const viewEvent = (user, id) => {
+export const viewParty = (user, id) => {
   return axios({
-    url: apiUrl + '/events/' + id,
+    url: apiUrl + '/partys/' + id,
     headers: {
       Authorization: 'Bearer ' + user.token
     },
@@ -156,33 +156,33 @@ export const viewEvent = (user, id) => {
   })
 }
 
-export const viewEvents = (user, id) => {
+export const viewPartys = (user, id) => {
   return axios({
-    url: apiUrl + '/events/',
+    url: apiUrl + '/partys/',
     method: 'GET'
   }
   )
 }
 
-export const updateEvent = (user, event, id) => {
+export const updateParty = (user, party, id) => {
   return axios({
-    url: apiUrl + '/events/' + id,
+    url: apiUrl + '/partys/' + id,
     headers: {
       Authorization: 'Bearer ' + user.token
     },
     method: 'PATCH',
     data: {
-      event: {
-        title: event.title,
-        date: event.date
+      party: {
+        title: party.title,
+        date: party.date
       }
     }
   })
 }
 
-export const deleteEvent = (user, id) => {
+export const deleteParty = (user, id) => {
   return axios({
-    url: apiUrl + '/events/' + id,
+    url: apiUrl + '/partys/' + id,
     headers: {
       Authorization: 'Bearer ' + user.token
     },

@@ -9,12 +9,12 @@ import SignUp from './components/SignUp/SignUp'
 import SignIn from './components/SignIn/SignIn'
 import SignOut from './components/SignOut/SignOut'
 import ChangePassword from './components/ChangePassword/ChangePassword'
-// <-------- Event imports ------------->
-import CreateEvent from './components/EventComponents/CreateEvents'
-import UpdateEvent from './components/EventComponents/UpdateEvent'
-import DeleteEvent from './components/EventComponents/DeleteEvent'
-import ViewEvent from './components/EventComponents/ViewEvent'
-import ViewEvents from './components/EventComponents/ViewEvents'
+// <-------- Party imports ------------->
+import CreateParty from './components/PartyComponents/CreatePartys'
+import UpdateParty from './components/PartyComponents/UpdateParty'
+import DeleteParty from './components/PartyComponents/DeleteParty'
+import ViewParty from './components/PartyComponents/ViewParty'
+import ViewPartys from './components/PartyComponents/ViewPartys'
 
 class App extends Component {
   constructor () {
@@ -71,34 +71,34 @@ class App extends Component {
           <AuthenticatedRoute user={user} path='/change-password' render={() => (
             <ChangePassword msgAlert={this.msgAlert} user={user} />
           )} />
-          <Route user={user} exact path='/view-events' render={() => (
-            <ViewEvents
+          <Route user={user} exact path='/view-partys' render={() => (
+            <ViewPartys
               user={user}
               msgAlert={this.msgAlert}
             />
           )}/>
-          <AuthenticatedRoute user={user} path='/create-events' render={() => (
-            <CreateEvent
+          <AuthenticatedRoute user={user} path='/create-partys' render={() => (
+            <CreateParty
               user={user}
               msgAlert={this.msgAlert}
             />
           )}/>
-          <AuthenticatedRoute user={user} path='/delete-event/:eventId' render={({ match }) => (
-            <DeleteEvent
+          <AuthenticatedRoute user={user} path='/delete-party/:partyId' render={({ match }) => (
+            <DeleteParty
               msgAlert={this.msgAlert}
               user={user}
               match={match}
             />
           )} />
-          <AuthenticatedRoute user={user} path='/events/:eventId' render={({ match }) => (
-            <ViewEvent
+          <AuthenticatedRoute user={user} path='/partys/:partyId' render={({ match }) => (
+            <ViewParty
               user={user}
               msgAlert={this.msgAlert}
               match={match}
             />
           )}/>
-          <AuthenticatedRoute user={user} path='/event-update/:eventId' render={({ match, history }) => (
-            <UpdateEvent
+          <AuthenticatedRoute user={user} path='/party-update/:partyId' render={({ match, history }) => (
+            <UpdateParty
               match={match}
               history={history}
               user={user}

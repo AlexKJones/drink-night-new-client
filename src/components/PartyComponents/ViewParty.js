@@ -1,32 +1,32 @@
 import React, { useState, useEffect } from 'react'
 import { withRouter, Link } from 'react-router-dom'
 import Button from 'react-bootstrap/Button'
-import { viewEvent, deleteEvent, deleteReview } from '../../api/auth'
+import { viewParty, deleteParty, deleteReview } from '../../api/auth'
 import Card from 'react-bootstrap/Card'
 
-const ViewEvent = (props) => {
-  const [event, setEvent] = useState(null)
+const ViewParty = (props) => {
+  const [party, setParty] = useState(null)
   const [reviews, setReviews] = useState(null)
   const [owner, setOwner] = useState(null)
   const { user, msgAlert, match, history } = props
 
   useEffect(() => {
-    viewEvent(user, match.params.eventId)
+    viewParty(user, match.params.partyId)
       .then(res => {
-        setEvent(res.data.event)
+        setParty(res.data.party)
         setReviews(res.data.reviews)
-        setOwner(res.data.event.owner)
+        setOwner(res.data.party.owner)
       })
       .then(() => {
         msgAlert({
-          heading: 'View Event Success',
-          message: 'See the Event there!',
+          heading: 'View Party Success',
+          message: 'See the Party there!',
           variant: 'success'
         })
       })
       .catch(err => {
         msgAlert({
-          heading: 'Event Event Failed :(',
+          heading: 'Party Party Failed :(',
           message: 'Error code: ' + err.message,
           variant: 'danger'
         })
@@ -34,15 +34,15 @@ const ViewEvent = (props) => {
   }, [])
 
   const handleDelete = () => {
-    deleteEvent(user, match.params.eventId)
+    deleteParty(user, match.params.partyId)
       .then(() => {
         msgAlert({
-          heading: 'Event Deleted',
-          message: 'Back to the list of events that exist',
+          heading: 'Party Deleted',
+          message: 'Back to the list of partys that exist',
           variant: 'success'
         })
       })
-      .then(() => history.push('/events'))
+      .then(() => history.push('/partys'))
       .catch(err => {
         msgAlert({
           heading: 'Deletion Failed',
@@ -73,18 +73,15 @@ const ViewEvent = (props) => {
 
   return (
     <div>
-      {event && reviews ? (
+      {party && reviews ? (
         <div>
           <div>
             <Card>
-              <Card.Title>{event.title}</Card.Title>
-              <Card.Text>Starring: {event.starring}</Card.Text>
-              <Card.Text>Directed by: {event.director}</Card.Text>
-              <Card.Text>{event.description}</Card.Text>
-              <Card.Text>released: {event.released}</Card.Text>
-              {user._id === owner ? <Link to={'/event-update/' + event._id}>Update Event</Link> : '' }
-              <Link to={'/create-review/' + event._id}>Review Event</Link>
-              {user._id === owner ? <Button onClick={handleDelete}>Delete This Event</Button> : '' }
+              <Card.Title>{party.title}</Card.Title>
+              <Card.Text>Date: {party.date}</Card.Text>
+              {user._id === owner ? <Link to={'/party-update/' + party._id}>Update Party</Link> : '' }
+              <Link to={'/create-review/' + party._id}>Review Party</Link>
+              {user._id === owner ? <Button onClick={handleDelete}>Delete This Party</Button> : '' }
             </Card>
             {reviews.map(review => (
               <div key={review._id}>
@@ -106,4 +103,4 @@ const ViewEvent = (props) => {
   )
 }
 
-export default withRouter(ViewEvent)
+export default withRouter(ViewParty)

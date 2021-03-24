@@ -7,7 +7,7 @@ const ViewReviews = props => {
   const { user, match } = props
 
   useEffect(() => {
-    viewReviews(user, match.params.eventId)
+    viewReviews(user, match.params.partyId)
       .then(res => {
         setReviewArray(res.data.reviews)
       })

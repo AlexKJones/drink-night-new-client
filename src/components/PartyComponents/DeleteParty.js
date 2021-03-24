@@ -1,27 +1,27 @@
 import React, { useState, useEffect } from 'react'
 import { Link, withRouter } from 'react-router-dom'
 
-import { viewEvent, deleteEvent } from '../../api/auth'
-const DeleteEvent = (props) => {
+import { viewParty, deleteParty } from '../../api/auth'
+const DeleteParty = (props) => {
   // const [loading, setLoading] = useState(true)
-  const [event, setEvent] = useState(null)
+  const [party, setParty] = useState(null)
   const { user, msgAlert, match, history } = props
 
   useEffect(() => {
-    viewEvent(user, match.params.eventId)
+    viewParty(user, match.params.partyId)
       .then(res => {
-        setEvent(res.data.event)
+        setParty(res.data.party)
       })
       .then(() => {
         msgAlert({
-          heading: 'View Event Success',
-          message: 'See the Event there!',
+          heading: 'View Party Success',
+          message: 'See the Party there!',
           variant: 'success'
         })
       })
       .catch(err => {
         msgAlert({
-          heading: 'Event Event Failed :(',
+          heading: 'Party Party Failed :(',
           message: 'Error code: ' + err.message,
           variant: 'danger'
         })
@@ -29,15 +29,15 @@ const DeleteEvent = (props) => {
   }, [])
 
   const handleDelete = () => {
-    deleteEvent(user, match.params.eventId)
+    deleteParty(user, match.params.partyId)
       .then(() => {
         msgAlert({
-          heading: 'Event Deleted',
-          message: 'Back to the list of events that exist',
+          heading: 'Party Deleted',
+          message: 'Back to the list of partys that exist',
           variant: 'success'
         })
       })
-      .then(() => history.push('/events'))
+      .then(() => history.push('/partys'))
       .catch(err => {
         msgAlert({
           heading: 'Deletion Failed',
@@ -49,16 +49,16 @@ const DeleteEvent = (props) => {
 
   return (
     <div>
-      {event ? (
+      {party ? (
         <div>
-          <h2>{event.title}</h2>
-          <p>Directed by: {event.director}</p>
+          <h2>{party.title}</h2>
+          <p>Date: {party.date}</p>
           <button onClick={handleDelete}>Delete</button>
-          <Link to={'/event-update/' + event._id}>Update Event</Link>
+          <Link to={'/party-update/' + party._id}>Update Party</Link>
         </div>
       ) : 'Loading...'}
     </div>
   )
 }
 
-export default withRouter(DeleteEvent)
+export default withRouter(DeleteParty)
