@@ -41,6 +41,7 @@ const ViewPartys = props => {
               <Card.Body>
                 <Card.Title>{party.title}</Card.Title>
                 <Card.Text>Date: {party.date}</Card.Text>
+                <Card.Text>BacScore: {party.bacpoints}</Card.Text>
                 {user ? <Link to={`/partys/${party._id}`}>More Info   </Link> : '' }
               </Card.Body>
             </Card>

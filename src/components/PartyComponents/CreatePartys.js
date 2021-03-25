@@ -6,7 +6,7 @@ import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 
 const PartyCreate = props => {
-  const [party, setParty] = useState({ title: '', date: '' })
+  const [party, setParty] = useState({ title: '', date: '', bacpoints: 0, beer: 0, wine: 0, cider: 0, mead: 0, sake: 0, gin: 0, brandy: 0, whiskey: 0, rum: 0, tequila: 0, vodka: 0, absinthe: 0, everclear: 0 })
   const [createdPartyId, setCreatedPartyId] = useState(null)
   const { msgAlert } = props
   const handleChange = event => {

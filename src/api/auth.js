@@ -140,7 +140,21 @@ export const createParty = (party, user) => {
     data: {
       party: {
         title: party.title,
-        date: party.date
+        date: party.date,
+        bacpoints: party.bacpoints,
+        beer: party.beer,
+        wine: party.wine,
+        cider: party.cider,
+        mead: party.mead,
+        sake: party.sake,
+        gin: party.gin,
+        brandy: party.brandy,
+        whiskey: party.whiskey,
+        rum: party.rum,
+        tequila: party.tequila,
+        vodka: party.vodka,
+        absinthe: party.absinthe,
+        everclear: party.everclear
       }
     }
   })
@@ -174,7 +188,21 @@ export const updateParty = (user, party, id) => {
     data: {
       party: {
         title: party.title,
-        date: party.date
+        date: party.date,
+        bacpoints: party.bacpoints,
+        beer: party.beer,
+        wine: party.wine,
+        cider: party.cider,
+        mead: party.mead,
+        sake: party.sake,
+        gin: party.gin,
+        brandy: party.brandy,
+        whiskey: party.whiskey,
+        rum: party.rum,
+        tequila: party.tequila,
+        vodka: party.vodka,
+        absinthe: party.absinthe,
+        everclear: party.everclear
       }
     }
   })
