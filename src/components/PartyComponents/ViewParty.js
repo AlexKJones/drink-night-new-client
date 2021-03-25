@@ -71,12 +71,27 @@ const ViewParty = (props) => {
       })
   }
 
+  const partyCard = {
+    card: {
+      backgroundColor: '#CE6A6C',
+      color: '#222F53',
+      borderRadius: 20,
+      padding: '1rem',
+      width: '18rem',
+      height: '24rem',
+      margin: 10
+    },
+    conatiner: {
+      display: 'flex'
+    }
+  }
+
   return (
     <div>
       {party && reviews ? (
         <div>
           <div>
-            <Card>
+            <Card style={partyCard.card}>
               <Card.Title>{party.title}</Card.Title>
               <Card.Text>Date: {party.date}</Card.Text>
               {user._id === owner ? <Link to={'/party-update/' + party._id}>Update Party</Link> : '' }
