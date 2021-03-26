@@ -61,7 +61,7 @@ export const changePassword = (passwords, user) => {
 // <--------------------------->
 // <--------------------------->
 
-export const createReview = (review, user) => {
+export const createReview = (review, user, party) => {
   return axios({
     url: apiUrl + '/create-reviews',
     method: 'POST',
@@ -70,9 +70,19 @@ export const createReview = (review, user) => {
     },
     data: {
       review: {
-        title: review.title,
-        body: review.body,
-        rating: review.rating
+        notes: review.notes,
+        blackout: review.blackout,
+        heartburn: review.heartburn,
+        bloating: review.bloating,
+        diarrhea: review.diarrhea,
+        vomit: review.vomit,
+        stomach: review.stomach,
+        headache: review.headache,
+        breathing: review.breathing,
+        coordination: review.coordination,
+        insomnia: review.insomnia,
+        redface: review.redface,
+        memory: review.memory
       }
     }
   })
@@ -108,9 +118,19 @@ export const updateReview = (user, review, id) => {
     method: 'PATCH',
     data: {
       review: {
-        title: review.title,
-        body: review.body,
-        rating: review.rating
+        notes: review.notes,
+        blackout: review.blackout,
+        heartburn: review.heartburn,
+        bloating: review.bloating,
+        diarrhea: review.diarrhea,
+        vomit: review.vomit,
+        stomach: review.stomach,
+        headache: review.headache,
+        breathing: review.breathing,
+        coordination: review.coordination,
+        insomnia: review.insomnia,
+        redface: review.redface,
+        memory: review.memory
       }
     }
   })

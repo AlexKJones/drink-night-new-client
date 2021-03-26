@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { Redirect, Link } from 'react-router-dom'
-import { updateReview, viewReview } from '../../../api/auth'
+import { updateReview, viewReview } from '../../api/auth'
 
 const ReviewUpdate = (props) => {
-  const [review, setReview] = useState({ title: '', body: '', rating: '' })
+  const [review, setReview] = useState({ notes: '', blackout: false, heartburn: false, bloating: false, diarrhea: false, vomit: false, stomach: false, headache: false, breathing: false, coordination: false, insomnia: false, redface: false, memory: false })
   const [updated, setUpdated] = useState(false)
   const { msgAlert } = props
 
@@ -29,7 +29,6 @@ const ReviewUpdate = (props) => {
       .then(() => {
         msgAlert({
           heading: 'Update Review Success',
-          message: 'Nice Job!',
           variant: 'success'
         })
       })
@@ -49,25 +48,11 @@ const ReviewUpdate = (props) => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <label>Title</label>
+      <label>Notes</label>
       <input
-        placeholder="A Wonderful Movie"
-        value={review.title}
-        name="title"
-        onChange={handleChange}
-      />
-      <label>body</label>
-      <input
-        placeholder="Wow so good"
-        value={review.description}
-        name="body"
-        onChange={handleChange}
-      />
-      <label>Rating</label>
-      <input
-        placeholder="10"
-        value={review.released}
-        name="rating"
+        placeholder="Fell on a friend, awkward"
+        value={review.notes}
+        name="notes"
         onChange={handleChange}
       />
       <button type="submit">Submit</button>

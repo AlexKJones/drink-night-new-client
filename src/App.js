@@ -15,6 +15,12 @@ import UpdateParty from './components/PartyComponents/UpdateParty'
 import DeleteParty from './components/PartyComponents/DeleteParty'
 import ViewParty from './components/PartyComponents/ViewParty'
 import ViewPartys from './components/PartyComponents/ViewPartys'
+// <-------- Review imports ------------->
+import CreateReview from './components/ReviewComponents/CreateReview'
+import UpdateReview from './components/ReviewComponents/UpdateReview'
+import DeleteReview from './components/ReviewComponents/DeleteReview'
+import ViewReview from './components/ReviewComponents/ViewReview'
+import ViewReviews from './components/ReviewComponents/ViewReviews'
 
 class App extends Component {
   constructor () {
@@ -71,6 +77,35 @@ class App extends Component {
           <AuthenticatedRoute user={user} path='/change-password' render={() => (
             <ChangePassword msgAlert={this.msgAlert} user={user} />
           )} />
+          <AuthenticatedRoute user={user} path='/deletereview/:reviewId' render={({ match }) => (
+            <DeleteReview
+              msgAlert={this.msgAlert}
+              user={user}
+              match={match}
+            />
+          )} />
+          <AuthenticatedRoute user={user} exact path='/reviews/:reviewId' render={({ match }) => (
+            <ViewReview
+              user={user}
+              msgAlert={this.msgAlert}
+              match={match}
+            />
+          )}/>
+          <Route user={user} exact path='/shows/:showId/reviews' render={({ match }) => (
+            <ViewReviews
+              user={user}
+              msgAlert={this.msgAlert}
+              match={match}
+            />
+          )}/>
+          <AuthenticatedRoute user={user} path='/review-update/:reviewId' render={({ match, history }) => (
+            <UpdateReview
+              match={match}
+              history={history}
+              user={user}
+              msgAlert={this.msgAlert}
+            />
+          )}/>
           <Route user={user} exact path='/view-partys' render={() => (
             <ViewPartys
               user={user}
@@ -105,6 +140,13 @@ class App extends Component {
               msgAlert={this.msgAlert}
             />
           )}/>
+          <AuthenticatedRoute user={user} path='/create-review/:showId' render={({ match }) => (
+            <CreateReview
+              match={match}
+              user={user}
+              msgAlert={this.msgAlert}
+            />
+          )} />
         </main>
       </Fragment>
 

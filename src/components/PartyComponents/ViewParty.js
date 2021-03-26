@@ -38,7 +38,6 @@ const ViewParty = (props) => {
   }, [])
   if (updated) {
     console.log('update successful')
-    // return <Redirect to={`/partys/${props.match.params.partyId}`} />
   }
   // handles deleting party or review
   const handleDelete = () => {

@@ -1,13 +1,13 @@
 import React, { useState } from 'react'
 import { Redirect, Link } from 'react-router-dom'
 import axios from 'axios'
-import apiUrl from '../../../apiConfig'
+import apiUrl from '../../apiConfig'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 
 const ReviewCreate = props => {
   const partyId = props.match.params.partyId
-  const [review, setReview] = useState({ title: '', body: '', rating: '', party: partyId })
+  const [review, setReview] = useState({ party: partyId, notes: '', blackout: false, heartburn: false, bloating: false, diarrhea: false, vomit: false, stomach: false, headache: false, breathing: false, coordination: false, insomnia: false, redface: false, memory: false })
   const [createdReviewId, setCreatedReviewId] = useState(null)
   const { msgAlert } = props
   const handleChange = event => {
@@ -32,7 +32,6 @@ const ReviewCreate = props => {
       .then(() => {
         msgAlert({
           heading: 'Create Review Success',
-          message: 'Nice Job!',
           variant: 'success'
         })
       })
@@ -54,30 +53,12 @@ const ReviewCreate = props => {
       <div className="col-sm-10 col-md-8 mx-auto mt-5">
         <h3>Create Review</h3>
         <Form onSubmit={handleSubmit}>
-          <Form.Group controlId="title">
-            <Form.Label>Title</Form.Label>
+          <Form.Group controlId="notes">
+            <Form.Label>Notes</Form.Label>
             <Form.Control
-              placeholder="Party was Great!"
-              value={review.title}
-              name="title"
-              onChange={handleChange}
-            />
-          </Form.Group>
-          <Form.Group controlId="body">
-            <Form.Label>Body</Form.Label>
-            <Form.Control
-              placeholder="Loved the fight scene"
-              value={review.body}
-              name="body"
-              onChange={handleChange}
-            />
-          </Form.Group>
-          <Form.Group controlId="rating">
-            <Form.Label>Rating</Form.Label>
-            <Form.Control
-              placeholder="10"
-              value={review.rating}
-              name="rating"
+              placeholder="Had a bad headache but didn't eat before."
+              value={review.notes}
+              name="notes"
               onChange={handleChange}
             />
           </Form.Group>

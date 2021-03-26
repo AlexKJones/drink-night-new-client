@@ -43,7 +43,7 @@ class SignIn extends Component {
         })
       })
       .finally(() => {
-        return <Redirect to={'/view-shows/'} />
+        return <Redirect to={'/view-partys/'} />
       })
   }
 
