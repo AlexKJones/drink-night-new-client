@@ -21,6 +21,10 @@ body.dark-mode {
   color: $background-color-light;
 }
 
+Card.Text {
+    white-space: pre;
+}
+
 .partyCard {
   text-align: center;
   background-color: #CE6A6C;

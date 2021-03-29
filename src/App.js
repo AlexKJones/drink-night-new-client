@@ -21,6 +21,11 @@ import UpdateReview from './components/ReviewComponents/UpdateReview'
 import DeleteReview from './components/ReviewComponents/DeleteReview'
 import ViewReview from './components/ReviewComponents/ViewReview'
 import ViewReviews from './components/ReviewComponents/ViewReviews'
+// <-------- Review imports ------------->
+import Health from './components/InfoComponents/Health'
+import Cocktails from './components/InfoComponents/Cocktails'
+import History from './components/InfoComponents/History'
+import Howto from './components/InfoComponents/Howto'
 
 class App extends Component {
   constructor () {
@@ -146,6 +151,18 @@ class App extends Component {
               user={user}
               msgAlert={this.msgAlert}
             />
+          )} />
+          <Route path='/health' render={() => (
+            <Health msgAlert={this.msgAlert} />
+          )} />
+          <Route path='/cocktails' render={() => (
+            <Cocktails msgAlert={this.msgAlert} />
+          )} />
+          <Route path='/history' render={() => (
+            <History msgAlert={this.msgAlert} />
+          )} />
+          <Route path='/howto' render={() => (
+            <Howto msgAlert={this.msgAlert} />
           )} />
         </main>
       </Fragment>

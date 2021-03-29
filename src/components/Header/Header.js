@@ -22,9 +22,13 @@ const unauthenticatedOptions = (
 
 const alwaysOptions = (
   <Fragment>
-    <Nav.Link class='navlink'href="#/">Home</Nav.Link>
+    <Nav.Link class='navlink'href="#health">Health</Nav.Link>
+    <Nav.Link class='navlink'href="#cocktails">Cocktails</Nav.Link>
+    <Nav.Link class='navlink'href="#history">History</Nav.Link>
+    <Nav.Link class='navlink'href="#howto">How to Use</Nav.Link>
   </Fragment>
 )
+// <Nav.Link class='navlink'href="#/">Home</Nav.Link>
 
 const Header = ({ user }) => (
   <Navbar id='navbarcontent' collapseOnSelect expand="lg" bg="dark" variant="dark">
